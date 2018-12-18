@@ -31,54 +31,59 @@ class SpotifyRequestController extends ControllerBase{
 
   public function getReleases(){
 
-      if(!$this->session->get('accessToken')){
-         return new RedirectResponse(\Drupal::url('spotify.login'));
-      }
-
       $api = new SpotifyWebAPI();
-      $api->setAccessToken($this->accessToken);
 
-      $releases = $api->getNewReleases([
-          'country' => 'co',
-      ]);
+      try {
 
-      $header = [
-        'picture' => '',
-        ['data' => t('Nombre')],
-        ['data' => t('Artista')],
-      ];
+            $api->setAccessToken($this->accessToken);
 
-      $cont = 0;
-      $content = [];
-      foreach ($releases->albums->items as $list) {
-        $content[$cont] =[
-          'picture' => [
-            'data' => [
-              '#type' => 'html_tag',
-              '#tag' => 'img',
-              '#attributes' => ['src' => $list->images[0]->url],
-            ],
-          ],
-        ];
-        $content[$cont]['name'] = $list->name;
+            $releases = $api->getNewReleases([
+                'country' => 'co',
+            ]);
 
-        foreach ($list->artists as $artist) {
-          $link = Link::fromTextAndUrl(t($artist->name), Url::fromRoute('artists.view'  , array('idartist' => $artist->id) ));
-          $content[$cont]['artist'] = $link;
-        }
-        $cont++;
+            $header = [
+              'picture' => '',
+              ['data' => t('Nombre')],
+              ['data' => t('Artista')],
+            ];
+
+            $cont = 0;
+            $content = [];
+            foreach ($releases->albums->items as $list) {
+              $content[$cont] =[
+                'picture' => [
+                  'data' => [
+                    '#type' => 'html_tag',
+                    '#tag' => 'img',
+                    '#attributes' => ['src' => $list->images[0]->url],
+                  ],
+                ],
+              ];
+              $content[$cont]['name'] = $list->name;
+
+              foreach ($list->artists as $artist) {
+                $link = Link::fromTextAndUrl(t($artist->name), Url::fromRoute('artists.view'  , array('idartist' => $artist->id) ));
+                $content[$cont]['artist'] = $link;
+              }
+              $cont++;
+            }
+
+            $results = [
+              '#type' => 'table',
+              '#header' => $header,
+              '#rows' => $content,
+               '#cache' => [
+                 'max-age' => 0,
+                ]
+            ];
+
+            return $results;
+
+      } catch (SpotifyWebAPIException $e) {
+
+        return new RedirectResponse(\Drupal::url('spotify.login'));
+
       }
-
-      $results = [
-        '#type' => 'table',
-        '#header' => $header,
-        '#rows' => $content,
-         '#cache' => [
-           'max-age' => 0,
-          ]
-      ];
-
-      return $results;
 
   }
 
