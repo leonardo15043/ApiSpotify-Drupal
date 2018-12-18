@@ -13,6 +13,7 @@ use Drupal\spotify\Api\SpotifyWebAPI;
 use Drupal\spotify\Api\Session;
 use Drupal\spotify\Api\Request;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
 
 class LoginController {
@@ -46,5 +47,16 @@ class LoginController {
     return new TrustedRedirectResponse($authorizeUrl);
 
   }
+
+  public function getToken(){
+
+    $this->access->requestAccessToken($_GET['code']);
+    $accessToken = $this->access->getAccessToken();
+    $this->session->set('accessToken', $accessToken);
+
+    return new RedirectResponse(\Drupal::url('releases.view'));
+
+  }
+
 
 }
