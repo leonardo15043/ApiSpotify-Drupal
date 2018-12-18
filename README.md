@@ -21,11 +21,7 @@ Antes de instalar este modulo es necesario hacer las siguientes configuraciones:
  * A este tipo de contenido le llamaremos Playlist y le especificaremos una descripción
  * Luego nos mostrara una vista para administrar nuestros campos:
 
- ** titulo: campo tipo texto
- ** Banner: campo tipo imagen
- ** Descripción: campo tipo texto
- ** Genero: campo tipo termino de taxonomia
- ** id_categoria: campo tipo texto
+    titulo: campo tipo texto ,Banner: campo tipo imagen, Descripción: campo tipo texto,Genero: campo tipo termino de taxonomia,  id_categoria: campo tipo texto
 
 * Ya teniendo el tipo de contenido nos faltaría crear la vista, para crear una nueva vista nos vamos a estructura/vistas
 * Hacemos click en Agregar una nueva vista
@@ -50,23 +46,23 @@ Por ultimo especificamos el contenido de los campos teniendo en cuenta que el id
 
 Algunas categorías de ejemplo podrían ser:
 
-toplists
-2018
-latin
-focus
-pop
-arab
-workout
-mood
-rock
-afro
-chill
-party
-teenz
-popculture
-indie_alt
-edm_dance
-dinner
-sleep
-hiphop
-rnb
+* toplists
+* 2018
+* latin
+* focus
+* pop
+* arab
+* workout
+* mood
+* rock
+* afro
+* chill
+* party
+* teenz
+* popculture
+* indie_alt
+* edm_dance
+* dinner
+* sleep
+* hiphop
+* rnb
