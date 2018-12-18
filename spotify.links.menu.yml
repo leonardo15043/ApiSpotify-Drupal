@@ -1,0 +1,6 @@
+hello.admin:
+  title: 'Api Spotify'
+  description: 'Información relevante de Spotify'
+  parent: system.admin_config_development
+  route_name: spotify.content
+  weight: 100

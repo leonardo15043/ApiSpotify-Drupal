@@ -1,0 +1,7 @@
+spotify.content:
+  path: '/login'
+  defaults:
+    _controller: '\Drupal\spotify\Controller\LoginController::content'
+    _title: 'Inicio de sesión'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,6 @@
+name: Api Spotify
+description: Muestra información relevante de Spotify.
+package: Custom
+type: module
+version: 1.0
+core: 8.x

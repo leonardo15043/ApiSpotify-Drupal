@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains spotify.module.
+ */
+
+ use Drupal\Core\Routing\RouteMatchInterface;
+
+ function spotify_permission() {
+
+   return array(
+        'access content' => array(
+            'title' => t('Acceso a Spotify'),
+            'description' => t('Permite la visualización del modulo de Spotify'),
+        ),
+    );
+
+ }
