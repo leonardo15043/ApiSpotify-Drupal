@@ -13,3 +13,11 @@ spotify.token:
     _title: 'Token'
   requirements:
     _permission: 'access content'
+
+releases.view:
+  path: '/releases'
+  defaults:
+    _controller: '\Drupal\spotify\Controller\SpotifyRequestController::getReleases'
+    _title: 'Nuevos Lanzamientos'
+  requirements:
+    _permission: 'access content'
