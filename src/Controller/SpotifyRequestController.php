@@ -73,6 +73,9 @@ class SpotifyRequestController extends ControllerBase{
         '#type' => 'table',
         '#header' => $header,
         '#rows' => $content,
+         '#cache' => [
+           'max-age' => 0,
+          ]
       ];
 
       return $results;
@@ -95,7 +98,10 @@ class SpotifyRequestController extends ControllerBase{
     return  array(
       '#theme' => 'spotify_artist',
       '#artist' => $artists->artists[0],
-      '#albums' => $albums->items
+      '#albums' => $albums->items,
+      '#cache' => [
+       'max-age' => 0,
+      ]
     );
 
   }
@@ -113,7 +119,10 @@ class SpotifyRequestController extends ControllerBase{
 
     return  array(
       '#theme' => 'spotify_tracks',
-      '#tracks' => $tracks->items
+      '#tracks' => $tracks->items,
+      '#cache' => [
+       'max-age' => 0,
+      ]
     );
 
   }

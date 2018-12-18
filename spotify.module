@@ -26,5 +26,8 @@
     'spotify_tracks' => array(
       'variables' => array( 'tracks' => array())
     ),
+    'spotify_playlist' => array(
+      'variables' => array('list' => array())
+    )
   );
 }

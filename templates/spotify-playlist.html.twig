@@ -1,0 +1,10 @@
+<h2>Playlist</h2>
+<ul>
+{% for item in list %}
+  <li>
+   <a href="{{item.uri}}" target="_blanck">{{ item.name }}</a>
+   <br>
+   <img src="{{item.images[0].url}}">
+  </li>
+{% endfor %}
+</ul>
