@@ -29,3 +29,11 @@ artists.view:
     _title: 'Información del Artista'
   requirements:
     _permission: 'access content'
+
+tracks.view:
+  path: '/tracks'
+  defaults:
+    _controller: '\Drupal\spotify\Controller\SpotifyRequestController::getTracks'
+    _title: 'Lista de Canciones'
+  requirements:
+    _permission: 'access content'

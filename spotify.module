@@ -21,7 +21,10 @@
  function spotify_theme($existing, $type, $theme, $path) {
   return array(
     'spotify_artist' => array(
-      'variables' => array('items' => array() , 'albums' => array())
+      'variables' => array('artist' => array() , 'albums' => array())
+    ),
+    'spotify_tracks' => array(
+      'variables' => array( 'tracks' => array())
     ),
   );
 }

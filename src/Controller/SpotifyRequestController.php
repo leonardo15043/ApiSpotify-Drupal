@@ -63,7 +63,7 @@ class SpotifyRequestController extends ControllerBase{
         $content[$cont]['name'] = $list->name;
 
         foreach ($list->artists as $artist) {
-          $link = Link::fromTextAndUrl(t($artist->name), Url::fromRoute('artist.view'  , array('idartist' => $artist->id) ));
+          $link = Link::fromTextAndUrl(t($artist->name), Url::fromRoute('artists.view'  , array('idartist' => $artist->id) ));
           $content[$cont]['artist'] = $link;
         }
         $cont++;
@@ -93,9 +93,27 @@ class SpotifyRequestController extends ControllerBase{
     $albums = $api->getArtistAlbums($idArtist);
 
     return  array(
-      '#theme' => 'hello_artist',
-      '#items' => $artists->artists[0],
+      '#theme' => 'spotify_artist',
+      '#artist' => $artists->artists[0],
       '#albums' => $albums->items
+    );
+
+  }
+
+  public function getTracks(){
+
+    if(!$this->session->get('accessToken')){
+       return new RedirectResponse(\Drupal::url('spotify.login'));
+    }
+
+    $idAlbum = \Drupal::request()->query->get('idalbum');
+    $api = new SpotifyWebAPI();
+    $api->setAccessToken($this->accessToken);
+    $tracks = $api->getAlbumTracks($idAlbum);
+
+    return  array(
+      '#theme' => 'spotify_tracks',
+      '#tracks' => $tracks->items
     );
 
   }
