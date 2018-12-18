@@ -79,4 +79,25 @@ class SpotifyRequestController extends ControllerBase{
 
   }
 
+  public function getArtists(){
+
+    if(!$this->session->get('accessToken')){
+       return new RedirectResponse(\Drupal::url('spotify.login'));
+    }
+
+    $idArtist = \Drupal::request()->query->get('idartist');
+    $api = new SpotifyWebAPI();
+    $api->setAccessToken($this->accessToken);
+
+    $artists = $api->getArtists($idArtist);
+    $albums = $api->getArtistAlbums($idArtist);
+
+    return  array(
+      '#theme' => 'hello_artist',
+      '#items' => $artists->artists[0],
+      '#albums' => $albums->items
+    );
+
+  }
+
 }

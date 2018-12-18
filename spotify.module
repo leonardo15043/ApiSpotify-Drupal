@@ -17,3 +17,11 @@
     );
 
  }
+
+ function spotify_theme($existing, $type, $theme, $path) {
+  return array(
+    'spotify_artist' => array(
+      'variables' => array('items' => array() , 'albums' => array())
+    ),
+  );
+}

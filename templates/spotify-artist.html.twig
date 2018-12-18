@@ -1,0 +1,12 @@
+<h2>{{ items.name }}</h2>
+<img src="{{ items.images[1].url }}" width="300">
+<h2>Álbumes</h2>
+<ul>
+{% for alb in albums %}
+  <li>
+  {{ alb.name }} <a href="tracks?idalbum={{alb.id}}">Canciones</a>
+  <br>
+  <img src="{{ alb.images[2].url }}" width="100">
+  </li>
+{% endfor %}
+</ul>

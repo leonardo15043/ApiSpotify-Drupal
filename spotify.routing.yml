@@ -21,3 +21,11 @@ releases.view:
     _title: 'Nuevos Lanzamientos'
   requirements:
     _permission: 'access content'
+
+artists.view:
+  path: '/artists'
+  defaults:
+    _controller: '\Drupal\spotify\Controller\SpotifyRequestController::getArtists'
+    _title: 'Información del Artista'
+  requirements:
+    _permission: 'access content'
